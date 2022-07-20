@@ -1,4 +1,4 @@
-package com.example.learningapp.ui
+package com.example.learningapp.ui.main
 
 import androidx.fragment.app.activityViewModels
 import com.example.learningapp.R
