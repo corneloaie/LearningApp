@@ -1,5 +1,8 @@
 package com.example.learningapp.data.remote.dto
 
+import com.example.learningapp.domain.model.Media
+import com.example.learningapp.domain.model.Metadata
+import com.example.learningapp.domain.model.Nft
 import java.net.URL
 
 //todo, serialize annotation from moshi? to follow good practices with matching the key name in the response body
@@ -20,4 +23,24 @@ data class NftDto(
     val tags: List<String>,
     val metadata: MetadataDto,
     val ticker: String
-)
+) {
+    fun toNft(): Nft {
+        return Nft(
+        identifier,
+        collection,
+        timestamp,
+        attributes,
+        nonce,
+        type,
+        name,
+        creator,
+        royalties,
+        uris,
+        url,
+        media as List<Media>,
+        isWhitelistedStorage,
+        tags,
+        metadata as Metadata,
+        ticker)
+    }
+}
