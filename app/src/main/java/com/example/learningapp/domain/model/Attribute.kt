@@ -1,6 +1,6 @@
 package com.example.learningapp.domain.model
 
 data class Attribute(
-    val trait_type: String,
+    val traitType: String,
     val value: String
 )

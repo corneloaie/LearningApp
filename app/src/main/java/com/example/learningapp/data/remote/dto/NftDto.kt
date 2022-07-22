@@ -3,44 +3,45 @@ package com.example.learningapp.data.remote.dto
 import com.example.learningapp.domain.model.Media
 import com.example.learningapp.domain.model.Metadata
 import com.example.learningapp.domain.model.Nft
+import com.squareup.moshi.Json
 import java.net.URL
 
-//todo, serialize annotation from moshi? to follow good practices with matching the key name in the response body
 data class NftDto(
-    val identifier: String,
-    val collection: String,
-    val timestamp: Int,
-    val attributes: String,
-    val nonce: Int,
-    val type: String,
-    val name: String,
-    val creator: String,
-    val royalties: Int,
-    val uris: List<String>, // sau ArrayList? presupun ca nu o sa modificam lista
-    val url: String,
-    val media: List<MediaDto>,
-    val isWhitelistedStorage: Boolean,
-    val tags: List<String>,
-    val metadata: MetadataDto,
-    val ticker: String
-) {
-    fun toNft(): Nft {
-        return Nft(
-        identifier,
-        collection,
-        timestamp,
-        attributes,
-        nonce,
-        type,
-        name,
-        creator,
-        royalties,
-        uris,
-        url,
-        media as List<Media>,
-        isWhitelistedStorage,
-        tags,
-        metadata as Metadata,
-        ticker)
-    }
+    @Json(name = "identifier") val identifier: String,
+    @Json(name = "collection") val collection: String,
+    @Json(name= "timestamp") val timestamp: Int,
+    @Json(name = "attributes") val attributes: String,
+    @Json(name = "nonce") val nonce: Int,
+    @Json(name = "type") val type: String,
+    @Json(name = "name") val name: String,
+    @Json(name = "creator") val creator: String,
+    @Json(name = "royalties") val royalties: Int,
+    @Json(name = "uris") val uris: List<String>,
+    @Json(name = "url") val url: String,
+    @Json(name = "media") val media: List<MediaDto>,
+    @Json(name = "isWhiteListedStorage") val isWhitelistedStorage: Boolean,
+    @Json(name = "tags") val tags: List<String>,
+    @Json(name = "metadata") val metadata: MetadataDto,
+    @Json(name = "ticker") val ticker: String
+)
+
+fun NftDto.toNft() : Nft {
+    return Nft(
+        identifier = identifier,
+        collection = collection,
+        timestamp = timestamp,
+        attributes = attributes,
+        nonce = nonce,
+        type = type,
+        name = name,
+        creator = creator,
+        royalties = royalties,
+        uris = uris,
+        url = url,
+        media = media.map { it.toMedia() },
+        isWhitelistedStorage = isWhitelistedStorage,
+        tags = tags,
+        metadata = metadata.toMetadata(),
+        ticker = ticker
+    )
 }
