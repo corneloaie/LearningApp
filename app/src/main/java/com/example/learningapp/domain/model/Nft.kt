@@ -1,7 +1,5 @@
 package com.example.learningapp.domain.model
 
-import com.example.learningapp.data.remote.dto.MediaDto
-import com.example.learningapp.data.remote.dto.NftDto
 
 
 data class Nft(
@@ -14,7 +12,7 @@ data class Nft(
     val name: String,
     val creator: String,
     val royalties: Int,
-    val uris: List<String>, // sau ArrayList? presupun ca nu o sa modificam lista
+    val uris: List<String>,
     val url: String,
     val media: List<Media>,
     val isWhitelistedStorage: Boolean,
@@ -22,21 +20,3 @@ data class Nft(
     val metadata: Metadata,
     val ticker: String
 )
-//fun NftDto.toNft():Nft =  Nft(
-//    identifier,
-//    collection,
-//    timestamp,
-//    attributes,
-//    nonce,
-//    type,
-//    name,
-//    creator,
-//    royalties,
-//    uris,
-//    url,
-//    media as List<Media>,
-//    isWhitelistedStorage,
-//    tags,
-//    metadata as Metadata,
-//    ticker
-//)
