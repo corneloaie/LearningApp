@@ -4,6 +4,7 @@ import androidx.activity.viewModels
 import com.example.learningapp.R
 import com.example.learningapp.base.view.activity.BaseActivity
 import com.example.learningapp.databinding.ActivityMainBinding
+import com.example.learningapp.ui.main.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
