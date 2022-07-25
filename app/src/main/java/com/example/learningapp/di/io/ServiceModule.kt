@@ -8,7 +8,12 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.create
 import javax.inject.Singleton
 
 @Module
@@ -26,19 +31,30 @@ object ServiceModule {
     @Provides
     @Singleton
     fun provideHttpClient(): OkHttpClient {
-       //TODO instantiate http client
+        return OkHttpClient
+            .Builder()
+            .addNetworkInterceptor(HttpLoggingInterceptor().apply {
+                level = HttpLoggingInterceptor.Level.BODY
+            })
+            .build()
     }
 
 
     @Provides
     @Singleton
     fun provideRetrofit(client: OkHttpClient, moshi: Moshi): Retrofit {
-        //TODO instantiate retrofit pls
+        return Retrofit
+            .Builder()
+            .client(client)
+            .baseUrl("https://api.elrond.com/")
+            .addConverterFactory(MoshiConverterFactory.create(moshi))
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .build()
     }
 
     @Provides
     @Singleton
     fun provideElrondService(retrofit: Retrofit): ElrondService {
-        //TODO instantiate service
+        return retrofit.create(ElrondService::class.java)
     }
 }
