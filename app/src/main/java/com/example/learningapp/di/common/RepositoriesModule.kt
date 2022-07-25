@@ -1,4 +1,16 @@
 package com.example.learningapp.di.common
 
-interface RepositoriesModule {
+import com.example.learningapp.data.repository.NftsRepositoryImpl
+import com.example.learningapp.domain.repository.NftsRepository
+import dagger.Binds
+import dagger.Module
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
+
+@Module
+@InstallIn(SingletonComponent::class)
+abstract class RepositoriesModule {
+
+    @Binds
+    abstract fun provideNftsRepository(impl: NftsRepositoryImpl): NftsRepository
 }
