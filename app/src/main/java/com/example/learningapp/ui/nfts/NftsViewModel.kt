@@ -2,15 +2,15 @@ package com.example.learningapp.ui.nfts
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
 import com.example.learningapp.base.viewmodel.BaseViewModel
 import com.example.learningapp.domain.model.Nft
 import com.example.learningapp.domain.usecase.GetNftsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.Disposable
-import kotlinx.coroutines.launch
+import io.reactivex.rxjava3.observers.DisposableSingleObserver
+import java.lang.Exception
 import javax.inject.Inject
+
 
 @HiltViewModel
 class NftsViewModel @Inject constructor(
@@ -30,9 +30,14 @@ class NftsViewModel @Inject constructor(
     }
 
     private fun getNftList() {
-        val disposable: Disposable = getNftsUseCase.execute().subscribe{
+        disposables.add(getNftsUseCase.execute().subscribe(
+            {
                 value -> nftList.postValue(value)
-        }
-        disposables.add(disposable)
+            },
+            {
+                //TODO rxjava exception handling https://medium.com/swlh/master-error-handling-in-rxjava-crush-em-5cb66bb16ccd
+            }
+        ))
+
     }
 }

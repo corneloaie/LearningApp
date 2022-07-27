@@ -34,5 +34,6 @@ class NftsAdapterRemake(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder.from(parent)
     }
+
 }
 
