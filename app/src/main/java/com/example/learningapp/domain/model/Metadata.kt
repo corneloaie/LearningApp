@@ -9,7 +9,6 @@ data class Metadata(
     val fileType: String? = null,
     val edition: Int? = null,
     val date: Long? = null,
-    val image: String? = null,
     val collection: String? = null,
     val description: String? = null,
     val attributes: List<Attribute>? = null,

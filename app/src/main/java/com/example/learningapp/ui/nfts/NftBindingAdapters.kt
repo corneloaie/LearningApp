@@ -20,6 +20,6 @@ fun setImage(imageView: ImageView, imgUrl: String?) {
 @BindingAdapter("nftName")
 fun setName(textview: TextView, string: String?) {
     string?.let {
-        textview.setText(string)
+        textview.text = string
     }
 }

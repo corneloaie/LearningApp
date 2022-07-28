@@ -10,7 +10,6 @@ import com.example.learningapp.R
 import com.example.learningapp.base.view.fragment.BaseFragment
 import com.example.learningapp.databinding.NftsFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
-import io.reactivex.rxjava3.disposables.Disposable
 
 @AndroidEntryPoint
 class NftsFragment : BaseFragment<NftsViewModel, NftsFragmentBinding>(){
@@ -33,7 +32,7 @@ class NftsFragment : BaseFragment<NftsViewModel, NftsFragmentBinding>(){
             lifecycleOwner = this@NftsFragment
         }
 
-        val adapter = NftsAdapterRemake(listOf())
+        val adapter = NftsAdapter()
 
         viewModel.nftList().observe(viewLifecycleOwner) {
             value -> adapter.submitList(value)

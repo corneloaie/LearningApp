@@ -1,5 +1,6 @@
 package com.example.learningapp.ui.nfts
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.learningapp.base.viewmodel.BaseViewModel
@@ -22,6 +23,7 @@ class NftsViewModel @Inject constructor(
         return this.nftList
     }
 
+    private val TAG = NftsViewModel::class.java.simpleName
 
 
 
@@ -35,6 +37,7 @@ class NftsViewModel @Inject constructor(
                 value -> nftList.postValue(value)
             },
             {
+                Log.e(TAG, it.toString())
                 //TODO rxjava exception handling https://medium.com/swlh/master-error-handling-in-rxjava-crush-em-5cb66bb16ccd
             }
         ))
