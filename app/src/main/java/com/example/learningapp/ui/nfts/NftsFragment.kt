@@ -34,6 +34,10 @@ class NftsFragment : BaseFragment<NftsViewModel, NftsFragmentBinding>(){
 
         val adapter = NftsAdapter()
 
+        viewModel.getError().observe(viewLifecycleOwner) {
+            value -> binding.nftsErrorHandling.text = value
+        }
+
         viewModel.nftList().observe(viewLifecycleOwner) {
             value -> adapter.submitList(value)
         }
