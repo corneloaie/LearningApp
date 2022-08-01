@@ -1,5 +1,7 @@
 package com.example.learningapp.di.usecase
 
+import com.example.learningapp.domain.usecase.GetNftUseCase
+import com.example.learningapp.domain.usecase.GetNftUseCaseImplementation
 import com.example.learningapp.domain.usecase.GetNftsUseCase
 import com.example.learningapp.domain.usecase.GetNftsUseCaseImplementation
 import dagger.Binds
@@ -13,4 +15,7 @@ abstract class UseCaseModule {
 
     @Binds
     abstract fun provideGetNftsUseCase(impl: GetNftsUseCaseImplementation): GetNftsUseCase
+
+    @Binds
+    abstract fun provideGetNftUseCase(impl: GetNftUseCaseImplementation) : GetNftUseCase
 }

@@ -6,4 +6,5 @@ import io.reactivex.rxjava3.core.Single
 
 interface NftsRepository {
     fun getNfts(): Single<List<Nft>>
+    fun getNft(id: String): Single<Nft>
 }
