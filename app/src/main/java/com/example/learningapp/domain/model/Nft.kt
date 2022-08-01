@@ -11,12 +11,12 @@ data class Nft(
     val type: String,
     val name: String,
     val creator: String,
-    val royalties: Int,
+    val royalties: Double? = null,
     val uris: List<String>,
     val url: String,
     val media: List<Media>,
-    val isWhitelistedStorage: Boolean,
-    val tags: List<String>,
+    val isWhitelistedStorage: Boolean? = null,
+    val tags: List<String>? = null,
     val metadata: Metadata,
     val ticker: String
 )

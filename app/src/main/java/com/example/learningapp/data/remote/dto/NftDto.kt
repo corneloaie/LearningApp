@@ -15,12 +15,12 @@ data class NftDto(
     @Json(name = "type") val type: String,
     @Json(name = "name") val name: String,
     @Json(name = "creator") val creator: String,
-    @Json(name = "royalties") val royalties: Int,
+    @Json(name = "royalties") val royalties: Double? = null,
     @Json(name = "uris") val uris: List<String>,
     @Json(name = "url") val url: String,
     @Json(name = "media") val media: List<MediaDto>,
-    @Json(name = "isWhiteListedStorage") val isWhitelistedStorage: Boolean,
-    @Json(name = "tags") val tags: List<String>,
+    @Json(name = "isWhiteListedStorage") val isWhitelistedStorage: Boolean? = null,
+    @Json(name = "tags") val tags: List<String>? = null,
     @Json(name = "metadata") val metadata: MetadataDto,
     @Json(name = "ticker") val ticker: String
 )
