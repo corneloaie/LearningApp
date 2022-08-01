@@ -21,16 +21,7 @@ class NftsFragment : BaseFragment<NftsViewModel, NftsFragmentBinding>(){
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding: NftsFragmentBinding = DataBindingUtil.inflate(
-            inflater, layoutId, container, false
-        )
-        binding.viewModel = viewModel
-
-
-        binding.apply {
-            viewModel = this@NftsFragment.viewModel
-            lifecycleOwner = this@NftsFragment
-        }
+        super.onCreateView(inflater, container, savedInstanceState)
 
         val adapter = NftsAdapter()
 

@@ -10,8 +10,7 @@ import com.example.learningapp.R
 @BindingAdapter("imageUrl")
 fun setImage(imageView: ImageView, imgUrl: String?) {
     imgUrl?.let {
-        val imgUri = imgUrl.toUri().buildUpon().scheme("https").build()
-        imageView.load(imgUri) {
+        imageView.load(imgUrl) {
             placeholder(com.google.android.material.R.drawable.abc_btn_check_material_anim)
             error(R.drawable.ic_launcher_background)
         }
