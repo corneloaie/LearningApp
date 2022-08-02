@@ -7,7 +7,7 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface ElrondService {
-    @GET("/nfts")
+    @GET("/nfts?size=2")
     fun getNfts(): Single<List<NftDto>>
     @GET("/nfts/{id}")
     fun getNft(
