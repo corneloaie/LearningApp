@@ -24,13 +24,7 @@ class NftViewModel @Inject constructor(
 
     private val TAG = NftViewModel::class.java.simpleName
 
-    init {
-        val myItem: String = savedStateHandle.get<String>("myItem").orEmpty()
-        Log.e(TAG, myItem.toString())
-        getNft(myItem)
-    }
-
-    private fun getNft(id: String) {
+    fun getNft(id: String) {
         disposables.add(getNftUseCase.execute(id).subscribe(
             {
                 value -> nft.postValue(value)

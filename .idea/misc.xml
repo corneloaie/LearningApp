@@ -6,12 +6,15 @@
         <entry key="../../../../layout/custom_preview.xml" value="0.2867274569402229" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.19375" />
         <entry key="app/src/main/res/layout/fragment.xml" value="0.19375" />
+        <entry key="app/src/main/res/layout/nft_details.xml" value="0.2056159420289855" />
         <entry key="app/src/main/res/layout/nft_fragment_screen_slide.xml" value="0.443359375" />
         <entry key="app/src/main/res/layout/nft_fragmentscreenslide.xml" value="0.3740875912408759" />
-        <entry key="app/src/main/res/layout/nft_fragnent.xml" value="0.26875" />
+        <entry key="app/src/main/res/layout/nft_fragnent.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/nft_information_fragment.xml" value="0.21014492753623187" />
+        <entry key="app/src/main/res/layout/nft_view_dynamic.xml" value="0.21014492753623187" />
         <entry key="app/src/main/res/layout/nft_view_fragment.xml" value="0.31927083333333334" />
         <entry key="app/src/main/res/layout/nfts_cardview.xml" value="0.31979166666666664" />
-        <entry key="app/src/main/res/layout/nfts_fragment.xml" value="0.34814814814814815" />
+        <entry key="app/src/main/res/layout/nfts_fragment.xml" value="0.10067114093959731" />
       </map>
     </option>
   </component>

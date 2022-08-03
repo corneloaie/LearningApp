@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
+import androidx.navigation.navGraphViewModels
 import androidx.viewpager2.widget.ViewPager2
 import coil.load
 import com.example.learningapp.R
@@ -18,7 +20,10 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class NftFragment : BaseFragment<NftViewModel, NftFragnentBinding>() {
     override val layoutId: Int = R.layout.nft_fragnent
-    override val viewModel: NftViewModel by viewModels()
+    override val viewModel: NftViewModel by activityViewModels()
+
+    val args: NftFragmentArgs by navArgs()
+
 
     val viewPager: ViewPager2 by lazy { binding.pager }
 
@@ -30,27 +35,33 @@ class NftFragment : BaseFragment<NftViewModel, NftFragnentBinding>() {
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
 
-        viewModel.nft().observe(viewLifecycleOwner) { value ->
-            binding.nftViewImage.load(value.media.get(0).thumbnailUrl) {
-                placeholder(R.drawable.ic_launcher_background)
-                error(androidx.constraintlayout.widget.R.drawable.abc_ic_search_api_material)
-            }
-        }
+        initObservers()
 
+        initViews()
+
+        viewModel.getNft(args.myItem)
+
+        return binding.root
+
+
+    }
+
+    private fun initViews() {
         val adapter = NftPagesAdapter(this)
-
 
 
         val tabLayout = binding.tabLayout
 
 
-        val informationTab = tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.tab_information)))
-        val detailsTab = tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.tab_details)))
+        val informationTab =
+            tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.tab_information)))
+        val detailsTab =
+            tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.tab_details)))
 
 
         viewPager.adapter = adapter
 
-        tabLayout.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener {
+        tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 viewPager.currentItem = tab?.position!!
             }
@@ -64,10 +75,15 @@ class NftFragment : BaseFragment<NftViewModel, NftFragnentBinding>() {
             }
 
         })
-
-
-        return binding.root
-
-
     }
+
+    private fun initObservers() {
+        viewModel.nft().observe(viewLifecycleOwner) { value ->
+            binding.nftViewImage.load(value.media.get(0).thumbnailUrl) {
+                placeholder(R.drawable.ic_launcher_background)
+                error(androidx.constraintlayout.widget.R.drawable.abc_ic_search_api_material)
+            }
+        }
+    }
+
 }

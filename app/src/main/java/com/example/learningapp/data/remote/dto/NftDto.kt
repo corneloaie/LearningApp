@@ -21,8 +21,9 @@ data class NftDto(
     @Json(name = "media") val media: List<MediaDto>,
     @Json(name = "isWhiteListedStorage") val isWhitelistedStorage: Boolean? = null,
     @Json(name = "tags") val tags: List<String>? = null,
-    @Json(name = "metadata") val metadata: MetadataDto,
-    @Json(name = "ticker") val ticker: String
+    @Json(name = "metadata") val metadata: MetadataDto? = null,
+    @Json(name = "ticker") val ticker: String,
+    @Json(name = "owner") val owner: String? = null
 )
 
 fun NftDto.toNft() : Nft {
@@ -41,7 +42,7 @@ fun NftDto.toNft() : Nft {
         media = media.map { it.toMedia() },
         isWhitelistedStorage = isWhitelistedStorage,
         tags = tags,
-        metadata = metadata.toMetadata(),
+        metadata = metadata?.toMetadata(),
         ticker = ticker
     )
 }

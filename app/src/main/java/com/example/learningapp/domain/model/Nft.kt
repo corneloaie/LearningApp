@@ -17,6 +17,24 @@ data class Nft(
     val media: List<Media>,
     val isWhitelistedStorage: Boolean? = null,
     val tags: List<String>? = null,
-    val metadata: Metadata,
-    val ticker: String
+    val metadata: Metadata? = null,
+    val ticker: String,
+    val owner: String? = null
 )
+
+fun Nft.toDetailsUI() : List<PropertyUI> {
+    return listOf(
+        PropertyUI("Rarity-type", type),
+        PropertyUI("Rarity-rank", timestamp.toString())
+    )
+}
+
+fun Nft.toInformationUI() : List<PropertyUI> {
+    return listOf(
+        PropertyUI("Name", name),
+        PropertyUI("Description", metadata?.description),
+        PropertyUI("Current owner", owner)
+    )
+}
+
+data class PropertyUI(val title: String?, val subtitle: String?)
