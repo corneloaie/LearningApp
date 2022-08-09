@@ -43,6 +43,7 @@ fun NftDto.toNft() : Nft {
         isWhitelistedStorage = isWhitelistedStorage,
         tags = tags,
         metadata = metadata?.toMetadata(),
-        ticker = ticker
+        ticker = ticker,
+        owner = owner
     )
 }

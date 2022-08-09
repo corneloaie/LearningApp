@@ -6,6 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.DividerItemDecoration.HORIZONTAL
+import androidx.recyclerview.widget.DividerItemDecoration.VERTICAL
 import com.example.learningapp.R
 import com.example.learningapp.base.view.fragment.BaseFragment
 import com.example.learningapp.databinding.NftDetailsBinding
@@ -26,12 +29,29 @@ class NftDetailsFragment : BaseFragment<NftViewModel, NftDetailsBinding>(){
 
         val adapter = NftViewAdapter()
 
-        viewModel.nft().observe(viewLifecycleOwner) {
-                value -> adapter.submitList(value.toDetailsUI())
-        }
+        initObservers(adapter)
 
-        binding.nftDetailsRV.adapter = adapter
+        initViews(adapter)
 
         return binding.root
+    }
+
+    private fun initViews(adapter: NftViewAdapter) {
+        val recyclerView = binding.nftDetailsRV
+
+        recyclerView.adapter = adapter
+
+        recyclerView.addItemDecoration(
+            DividerItemDecoration(
+                context,
+                VERTICAL
+            )
+        )
+    }
+
+    private fun initObservers(adapter: NftViewAdapter) {
+        viewModel.nft().observe(viewLifecycleOwner) { value ->
+            adapter.submitList(value.toDetailsUI())
+        }
     }
 }

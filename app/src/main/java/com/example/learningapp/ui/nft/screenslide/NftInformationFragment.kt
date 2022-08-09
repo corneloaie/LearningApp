@@ -25,14 +25,30 @@ class NftInformationFragment : BaseFragment<NftViewModel, NftInformationFragment
 
         val adapter = NftViewAdapter()
 
-        viewModel.nft().observe(viewLifecycleOwner) {
-            value -> adapter.submitList(value.toInformationUI())
-        }
+        initObservers(adapter)
 
-
-        binding.nftInformationRV.adapter = adapter
+        initViews(adapter)
 
         return binding.root
+    }
+
+    private fun initViews(adapter: NftViewAdapter) {
+        val recyclerView = binding.nftInformationRV
+
+        recyclerView.adapter = adapter
+
+        recyclerView.addItemDecoration(
+            DividerItemDecoration(
+                context,
+                DividerItemDecoration.VERTICAL
+            )
+        )
+    }
+
+    private fun initObservers(adapter: NftViewAdapter) {
+        viewModel.nft().observe(viewLifecycleOwner) { value ->
+            adapter.submitList(value.toInformationUI())
+        }
     }
 
 }
