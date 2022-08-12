@@ -44,12 +44,10 @@ class NftFragment : BaseFragment<NftViewModel, NftFragmentBinding>() {
 
         val tabLayout = binding.tabLayout
 
-        val tabTitles = listOf("Information", "Details")
-
         viewPager.adapter = adapter
 
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
-            tab.text = tabTitles[position]
+            tab.text = viewModel.tabTitles[position]
         }.attach()
     }
 

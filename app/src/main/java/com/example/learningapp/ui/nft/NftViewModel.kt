@@ -18,6 +18,8 @@ class NftViewModel @Inject constructor(
     private val nft: MutableLiveData<Nft> = MutableLiveData<Nft>()
     fun nft(): LiveData<Nft> = nft
 
+    val tabTitles = listOf("Information", "Details")
+
     private val TAG = NftViewModel::class.java.simpleName
 
     fun getNft(id: String) {
