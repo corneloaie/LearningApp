@@ -9,8 +9,10 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import com.example.learningapp.R
 import com.example.learningapp.base.view.fragment.BaseFragment
 import com.example.learningapp.databinding.NftInformationFragmentBinding
+import com.example.learningapp.domain.model.toDetailsUI
 import com.example.learningapp.domain.model.toInformationUI
 import com.example.learningapp.ui.nft.NftViewModel
+
 
 class NftInformationFragment : BaseFragment<NftViewModel, NftInformationFragmentBinding>() {
     override val layoutId: Int = R.layout.nft_information_fragment
@@ -46,9 +48,28 @@ class NftInformationFragment : BaseFragment<NftViewModel, NftInformationFragment
     }
 
     private fun initObservers(adapter: NftViewAdapter) {
+        val type = arguments?.getSerializable(TYPE) as? FragmentType
         viewModel.nft().observe(viewLifecycleOwner) { value ->
-            adapter.submitList(value.toInformationUI())
+            type?.let {
+                when(type) {
+                    FragmentType.INFORMATION -> adapter.submitList(value.toInformationUI())
+                    FragmentType.DETAILS -> adapter.submitList(value.toDetailsUI())
+                }
+            }
         }
     }
 
+    companion object {
+        const val TYPE = "type"
+        fun newInstance(type: FragmentType): NftInformationFragment = NftInformationFragment().apply {
+            arguments = Bundle().apply {
+                putSerializable(TYPE, type)
+            }
+        }
+    }
+}
+
+enum class FragmentType {
+    DETAILS,
+    INFORMATION
 }

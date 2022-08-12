@@ -5,28 +5,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
-import androidx.navigation.navGraphViewModels
 import androidx.viewpager2.widget.ViewPager2
 import coil.load
 import com.example.learningapp.R
 import com.example.learningapp.base.view.fragment.BaseFragment
-import com.example.learningapp.databinding.NftFragnentBinding
-import com.google.android.material.tabs.TabLayout
+import com.example.learningapp.databinding.NftFragmentBinding
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class NftFragment : BaseFragment<NftViewModel, NftFragnentBinding>() {
-    override val layoutId: Int = R.layout.nft_fragnent
+class NftFragment : BaseFragment<NftViewModel, NftFragmentBinding>() {
+    override val layoutId: Int = R.layout.nft_fragment
     override val viewModel: NftViewModel by activityViewModels()
 
     val args: NftFragmentArgs by navArgs()
 
-
     val viewPager: ViewPager2 by lazy { binding.pager }
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,39 +37,20 @@ class NftFragment : BaseFragment<NftViewModel, NftFragnentBinding>() {
         viewModel.getNft(args.myItem)
 
         return binding.root
-
-
     }
 
     private fun initViews() {
         val adapter = NftPagesAdapter(this)
 
-
         val tabLayout = binding.tabLayout
 
-
-        val informationTab =
-            tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.tab_information)))
-        val detailsTab =
-            tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.tab_details)))
-
+        val tabTitles = listOf("Information", "Details")
 
         viewPager.adapter = adapter
 
-        tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-            override fun onTabSelected(tab: TabLayout.Tab?) {
-                viewPager.currentItem = tab?.position!!
-            }
-
-            override fun onTabUnselected(tab: TabLayout.Tab?) {
-
-            }
-
-            override fun onTabReselected(tab: TabLayout.Tab?) {
-
-            }
-
-        })
+        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+            tab.text = tabTitles[position]
+        }.attach()
     }
 
     private fun initObservers() {
