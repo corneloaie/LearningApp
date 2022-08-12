@@ -14,8 +14,7 @@
             <argument
                 android:name="myItem"
                 android:defaultValue="HODL-ffb01b-01c2"
-                app:argType="string" >
-            </argument>
+                app:argType="string"/>
         </action>
     </fragment>
     <fragment
