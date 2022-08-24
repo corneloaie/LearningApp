@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+    <data>
+        <variable
+            name="propertyui"
+            type="com.example.learningapp.domain.model.PropertyUI" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/sub_title"
+            app:nftName="@{propertyui.title}"
+            />
+        <TextView
+            android:id="@+id/sub_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:nftName="@{propertyui.subtitle}"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

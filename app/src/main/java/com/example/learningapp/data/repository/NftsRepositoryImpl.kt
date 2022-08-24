@@ -1,6 +1,7 @@
 package com.example.learningapp.data.repository
 
 import com.example.learningapp.data.remote.ElrondService
+import com.example.learningapp.data.remote.dto.NftDto
 import com.example.learningapp.data.remote.dto.toNft
 import com.example.learningapp.domain.model.Nft
 import com.example.learningapp.domain.repository.NftsRepository
@@ -16,6 +17,13 @@ class NftsRepositoryImpl @Inject constructor(
                 it.map { nftDto ->
                     nftDto.toNft()
                 }
+            }
+    }
+
+    override fun getNft(id: String): Single<Nft> {
+        return service.getNft(id)
+            .map {
+                it.toNft()
             }
     }
 }

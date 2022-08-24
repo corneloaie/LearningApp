@@ -7,5 +7,23 @@
     <fragment
         android:id="@+id/nftsFragment"
         android:name="com.example.learningapp.ui.nfts.NftsFragment"
-        android:label="NftsFragment" />
+        android:label="NftsFragment">
+        <action
+            android:id="@+id/action_nftsFragment_to_nftFragment"
+            app:destination="@id/nftFragment">
+            <argument
+                android:name="myItem"
+                android:defaultValue="HODL-ffb01b-01c2"
+                app:argType="string"/>
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/nftFragment"
+        android:name="com.example.learningapp.ui.nft.NftFragment"
+        android:label="NftFragment">
+        <argument
+            android:name="myItem"
+            android:defaultValue="HODL-ffb01b-01c2"
+            app:argType="string" />
+    </fragment>
 </navigation>
