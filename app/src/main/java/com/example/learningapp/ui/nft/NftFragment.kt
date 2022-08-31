@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.PopupWindow
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.navArgs
 import androidx.viewpager2.widget.ViewPager2
@@ -63,18 +64,10 @@ class NftFragment : BaseFragment<NftViewModel, NftFragmentBinding>() {
                 error(androidx.constraintlayout.widget.R.drawable.abc_ic_search_api_material)
             }
             binding.nftViewImage.setOnClickListener {
-                popupImage(value)
+                val DialogFragment: NftDialogFragment = NftDialogFragment.newInstance(value.media.get(0).thumbnailUrl)
+                DialogFragment.show(childFragmentManager, "tag")
             }
         }
-    }
-
-    private fun popupImage(value: Nft) {
-        val layoutInflater = LayoutInflater.from(context)
-        val popupView: View = layoutInflater.inflate(R.layout.popupnftimage, null)
-        val image = popupView.findViewById<ImageView>(R.id.popupImage)
-        image.load(value.media.get(0).thumbnailUrl)
-        val popupWindow: PopupWindow = PopupWindow(popupView, 600, 600, true)
-        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0)
     }
 
 }
